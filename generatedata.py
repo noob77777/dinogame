@@ -8,10 +8,10 @@ import keyboard
 def generate_data(): 
 ##    last_time = time.time()
     record = 0
-    data = []
+    f = open('dataset.list', 'rb')
+    data = pickle.load(f)
+    f.close()
     while(True):
-        # 800x600 windowed mode for GTA 5, at the top left position of your main screen.
-        # 40 px accounts for title bar.
 
         if keyboard.is_pressed('q'):
             record = 1

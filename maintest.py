@@ -12,11 +12,17 @@ from sklearn.metrics import confusion_matrix
 
 import classifier
 
-f = open('main.classifier', 'rb')
+f = open('randomforest.classifier', 'rb')
 clf = pickle.load(f)
 f.close()
-
+f = open('svm.classifier', 'rb')
+clf2 = pickle.load(f)
+f.close()
+print("Press E to exit.")
 while(True):
+
+    if keyboard.is_pressed('e'):
+        break
     
     x = 400
     y = 150
@@ -30,17 +36,23 @@ while(True):
     # resize image
     screen = cv2.resize(screen, dim, interpolation = cv2.INTER_AREA)
 
+    if screen[1][1] <= 200.0:
+        screen = 255.0 - screen
+
     X = classifier.preprocess(screen)
     y = clf.predict(np.array([X]))
+    y2 = clf2.predict(np.array([X]))
 
-    print(y)
-    res = y[0]
+    ##print(y, y2)
+    res = y[0] | y2[0]
 
     
     if(res == 1):
         keyboard.press('space')
+        
+
     
-    cv2.imshow('window',screen)
+    ##cv2.imshow('window',screen)
     if cv2.waitKey(25) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
         break

@@ -20,7 +20,8 @@ def screen_record():
         dim = (width, height)
         # resize image
         screen = cv2.resize(screen, dim, interpolation = cv2.INTER_AREA)
-        
+        #print(screen)
+        #break
         cv2.imshow('window',screen)
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
