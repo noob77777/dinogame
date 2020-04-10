@@ -90,4 +90,4 @@ def train():
     pickle.dump(clf3, f)
     f.close()
 
-##train()
+train()

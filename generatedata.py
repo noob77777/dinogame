@@ -8,9 +8,7 @@ import keyboard
 def generate_data(): 
 ##    last_time = time.time()
     record = 0
-    f = open('dataset.list', 'rb')
-    data = pickle.load(f)
-    f.close()
+    data = []
     while(True):
 
         if keyboard.is_pressed('q'):
